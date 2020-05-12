@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@700&display=swap');
+
+.itemcontainer{
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 40px;
+    width:100%;
+    height:100%;
+    &__breadcrumb{
+        
+        display: flex;
+        width: 100%;
+        background-color: #f3f3f3;
+        height:50px;
+    }
+    &__image{
+        position: relative;
+        width:70%;
+        height: 600px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 6rem;
+        margin-top: 2rem;
+        align-content: flex-start;
+        img{
+            width: 500px;
+            height: 500px;
+        }
+        &__allimages{
+            &-image:hover{
+                cursor: pointer;
+            }
+            position: absolute;
+            left:5%;
+            img{
+                height:100px;
+                width:100px;
+            }
+        }
+    }
+    &__orderinformation{
+        display: flex;
+        flex-wrap: wrap;
+        background-color: #f3f3f3;
+        width: 30%;
+        height:800px;
+        padding-left: 2rem;
+        padding-right: 4rem;
+        // align-items: flex-start;
+        // align-content: flex-start;
+        &__variants{
+            img{
+                width: 70px;
+                height: 70px;
+            }
+        }
+        &__review{
+            width: 100%;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        &__category{
+            width:100%;
+            font-size: 1.4rem;
+        }
+        &__name{
+            width: 100%;
+            font-size: 2rem;
+            font-weight: 800;
+        }
+        &__price{
+            width: 100%;
+            font-size: 1.3rem;
+            font-weight: 200;
+        }
+        &__opinion{
+            width:100%;
+            font-size: 2rem;
+
+        }
+        &__default{
+            width: 100%;
+            color: red;
+            &-first{
+                font-size:2rem;
+                font-weight: 900;
+            }
+        }
+        &__buttons{
+            flex-wrap: wrap;
+            display: flex;
+            width:100%;
+            justify-content: space-between;
+            height:120px;
+            &__size{
+                display: flex;
+                width: 68%;
+                height: 50px;
+                position: relative;
+                display: inline-block;
+                font-weight: 800;
+                color: #000;
+                text-rendering: optimizeLegibility;
+                text-transform: none;
+                &__dropdown{
+                    // display:none;
+                    position: absolute;
+                    background-color: #fff;
+                    width:100%;
+                    
+                    
+                }
+                button{
+                    cursor: pointer;
+                    width:100%;
+                    background-color: white;
+                    height: 50px;
+                    border-color: #000;
+                    font-weight: 700;
+                    font-family: PT Sans Narrow, Text,Arial ,Franklin Gothic Book,Arial,sans-serif;
+                    font-style: normal;
+                    font-size: 1.5rem;
+                    
+                    
+                }
+            }
+            &__quantity{
+                
+                display: flex;
+                width: 30%;
+                height: 50px;
+                position: relative;
+                display: inline-block;
+                &__dropdown{
+                    // display:none;
+                    overflow: auto;
+                    position: absolute;
+                    background-color: #fff;
+                    width:100%;
+                   
+                    
+                    
+                    
+                }
+                button{
+                    cursor: pointer;
+                    width:100%;
+                    background-color: white;
+                    height: 50px;
+                    border-color: #000;
+                    font-weight: 700;
+                    font-family: PT Sans Narrow, Text,Arial ,Franklin Gothic Book,Arial,sans-serif;
+                    font-style: normal;
+                    font-size: 1.5rem;
+                }
+            }
+            &__add{
+                display: flex;
+                width: 100%;
+                height: 50px;
+                button{
+                    cursor: pointer;
+                    width:100%;
+                    background-color: black;
+                    height: 50px;
+                    color:white;
+                    font-weight: 700;
+                    font-family: PT Sans Narrow, Text,Arial ,Franklin Gothic Book,Arial,sans-serif;
+                    font-style: normal;
+                    font-size: 1.5rem;
+                }
+            }
+        }
+        
+    }
+    &__recommendproducts{
+        
+        width:70%;
+        &__title{
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        &__cards{
+            display:flex;
+            width: 100%;
+            justify-content: space-around;
+            
+            img{
+                width: 150px;
+                height: 150px;
+                
+
+            }
+        }
+    }
+}
+.sizelist{
+    background-color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    // margin: 0 -5px -5px 0;
+    // height: 100px;
+    max-height: none;
+    overflow-y: auto;
+    padding: 0;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    width: 100%;
+    list-style-type: none;
+    justify-content: center;
+    li{
+        display: flex;
+        flex-basis: 25%;
+        cursor: pointer;
+        font-size: 15px;
+        margin-left: 0.7rem;
+        margin-top: 1rem;
+        padding: 1rem;
+        border: solid 1px grey;
+        justify-content: center;
+        
+    }
+    li:hover{
+        
+        border-bottom: 2px solid black;
+        
+    }
+
+}
+.quantitylist{
+    
+    background-color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    // margin: 0 -5px -5px 0;
+    max-height: none;
+    overflow-y: auto;
+    padding: 0;
+    height:135px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    width: 100%;
+    list-style-type: none;
+    justify-content: center;
+    li{
+        display: flex;
+        flex-basis: 100%;
+        cursor: pointer;
+        font-size: 15px;
+        // margin-left: 0.7rem;
+        // margin-top: 1rem;
+        padding: 0.8rem;
+        border-top: solid 1px grey;
+        border-bottom: solid 1px grey;
+        // border: solid 1px grey;
+        justify-content: center;
+        
+    }
+    li:hover{
+        
+        border-bottom: 2px solid black;
+        
+    }
+}

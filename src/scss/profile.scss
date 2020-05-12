@@ -1,0 +1,58 @@
+.navbar{
+    height: 40px;
+}
+
+.profile{
+    height:1500px;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 100px 1fr;
+    &__suggestions{
+        display: grid;
+        
+        grid-template-columns: auto 400px;
+        &__list{
+            
+            &__title{
+                display: block;
+                padding-bottom: 1rem;
+                ::after{
+                    display: block;
+                    content: '';
+                    border: 5px solid rgb(98, 99, 97);
+                    width: 15%;
+                }
+            }
+            &__li{
+                cursor: pointer
+            }
+            ul{
+                display: block;
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+            }
+            ul li{
+                display: block;
+                width: 100%;
+                padding: 1rem;
+                text-align: center;
+                border: #284CAA solid 1px;
+                text-transform: uppercase;
+                font-weight: bold;
+                margin-bottom: 0.5rem;
+                background-color: #FAEBD7;
+            }
+            grid-column: 2/3;
+            
+        }
+    }
+    &__data{
+        
+        display: grid;
+        grid-template-columns:  0.85fr auto;
+        justify-content: center;
+        
+    }
+    
+}

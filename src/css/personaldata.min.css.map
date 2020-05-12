@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAEK,AAAD,mBAAO,AAAA,CACH,UAAU,CAAE,IAAI,CAgBnB,AAjBA,AAEG,mBAFG,CAEH,KAAK,AAAA,CACD,UAAU,CAAE,IAAI,CAChB,aAAa,CAAE,IAAI,CACnB,MAAM,CAAE,IAAI,CAGZ,KAAK,CAAE,GAAG,CACV,SAAS,CAAE,KAAK,CACnB,AAVJ,AAYG,mBAZG,CAYH,KAAK,CAAC,IAAI,AAAA,CACN,OAAO,CAAE,KAAK,CACd,SAAS,CAAE,IAAI,CAClB",
+    "sources": [
+        "../scss/personaldata.scss"
+    ],
+    "names": [],
+    "file": "personaldata.min.css"
+}

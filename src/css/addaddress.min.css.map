@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AACI,WADO,CACP,KAAK,AAAA,CACD,KAAK,CAAE,GAAG,CACb,AAHL,AAII,WAJO,CAIP,KAAK,CAAC,IAAI,AAAA,CACN,OAAO,CAAE,KAAK,CACjB",
+    "sources": [
+        "../scss/addaddress.scss"
+    ],
+    "names": [],
+    "file": "addaddress.min.css"
+}

@@ -1,0 +1,21 @@
+.personaldata{
+    
+    &__form{
+        margin-top: 2rem;
+        input{
+            margin-top: 15px;
+            margin-bottom: 15px;
+            height: 40px;
+
+            
+            width: 70%;
+            min-width: 300px;
+        }
+        
+        label span{
+            display: block;
+            font-size: 20px;
+        }
+
+    }
+}

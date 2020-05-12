@@ -1,0 +1,57 @@
+p{
+    font-weight: 800;
+}
+.address{
+    width:500px;
+    height: 400px;
+    border: 1px solid grey;
+    
+    h1 {
+        padding-top: 1rem;
+        color: rgb(0, 153, 255);
+        padding-bottom: 1rem;
+        padding-left: 2rem;
+
+    }
+    a{
+        color: black;
+        display: block;
+        font-size: 20px;
+        padding-bottom: 1rem;
+        padding-left: 2rem;
+    }
+    button{
+        background-color: red;
+        color: white;
+        padding: 0.7rem;
+        margin: 0.4rem;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+
+        
+    }
+    &__buttons{
+        display: grid;
+        // justify-content: center;
+        align-items: end;
+        
+
+    }
+    &__addbutton{
+        display:flex;
+        justify-content: flex-end;
+        button{
+            background-color: #284CAA;
+            font-size: 1rem;
+            color: white;
+            text-transform: uppercase;
+            font-weight: 400;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            padding: 1rem;
+            cursor: pointer;
+        }
+    }
+}
