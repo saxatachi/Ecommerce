@@ -29,3 +29,4 @@ wrapt==1.11.2
 django-oscar==2.0.4
 django-oscar-api
 django-filter
+sorl
