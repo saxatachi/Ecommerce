@@ -30,3 +30,4 @@ django-oscar==2.0.4
 django-oscar-api
 django-filter
 sorl-thumbnail
+django_countries
