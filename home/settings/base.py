@@ -11,6 +11,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_TMP = os.path.join(BASE_DIR, 'static')
 os.makedirs(STATIC_TMP, exist_ok=True)
 os.makedirs(STATIC_ROOT, exist_ok=True)
+print(BASE_DIR)
 MEDIA_URL = '/media/'
 #MEDIA_ROOT = r'C:\Users\Michal\django-react-boilerplate\home\media'
 STATIC_URL = '/static/'
