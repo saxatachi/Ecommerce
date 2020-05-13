@@ -1,6 +1,5 @@
 import os
 from oscar.defaults import *
-import django_heroku
 #BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '-05sgp9!deq=q1nltm@^^2cc+v29i(tyybv3v2t77qi66czazj'
@@ -166,4 +165,4 @@ CORS_ORIGIN_WHITELIST = [
     "http://127.0.0.1:9000",
     "127.0.0.1"
 ]
-django_heroku.settings(locals())
+
