@@ -32,3 +32,4 @@ django-filter
 sorl-thumbnail
 django_countries
 stripe
+paypal-checkout-serversdk
