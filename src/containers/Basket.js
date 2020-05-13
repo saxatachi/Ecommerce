@@ -22,14 +22,14 @@ const Basket = props => {
     useEffect(() => {
         console.log(session)
         const data = {
-            url: "http://127.0.0.1:8000/api/products/22/",
+            url: "https://ecommerce100.herokuapp.com/api/products/22/",
             quantity: 1,
         }
-        session.post('http://127.0.0.1:8000/api/basket/add-product/',data)
+        session.post('https://ecommerce100.herokuapp.com/add-product/',data)
         .then(res =>{
             console.log(res.data)
         })
-        session.get('http://127.0.0.1:8000/api/basket/')
+        session.get('https://ecommerce100.herokuapp.com/api/basket/')
             .then(
                 result =>{
                     console.log(result.data.lines)
