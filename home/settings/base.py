@@ -166,7 +166,4 @@ CORS_ORIGIN_WHITELIST = [
     "http://127.0.0.1:9000",
     "127.0.0.1"
 ]
-<<<<<<< HEAD
 django_heroku.settings(locals())
-=======
->>>>>>> cb742ee8b6d071a90508ce573502c200a68c72cf
