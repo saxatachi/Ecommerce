@@ -2,7 +2,7 @@
 
 from .base import *
 
-ALLOWED_HOSTS += ['127.0.0.1']
+ALLOWED_HOSTS += ['127.0.0.1','ecommerce100.herokuapp.com']
 DEBUG = True
 
 WSGI_APPLICATION = 'home.wsgi.dev.application'
@@ -16,4 +16,5 @@ DATABASES = {
 
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
+    'https://ecommerce200.netlify.app'
 )

@@ -1,7 +1,10 @@
 import os
 from oscar.defaults import *
+<<<<<<< HEAD
 from django.utils.translation import gettext_lazy as _
 
+=======
+>>>>>>> 512f968043d0c14bb71d9d2cb75962add33a2b32
 #BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '-05sgp9!deq=q1nltm@^^2cc+v29i(tyybv3v2t77qi66czazj'
@@ -21,6 +24,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_TMP = os.path.join(BASE_DIR, 'static')
 os.makedirs(STATIC_TMP, exist_ok=True)
 os.makedirs(STATIC_ROOT, exist_ok=True)
+print(BASE_DIR)
 MEDIA_URL = '/media/'
 #MEDIA_ROOT = r'C:\Users\Michal\django-react-boilerplate\home\media'
 STATIC_URL = '/static/'
@@ -84,7 +88,13 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+<<<<<<< HEAD
     
+=======
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+>>>>>>> 512f968043d0c14bb71d9d2cb75962add33a2b32
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -180,6 +190,7 @@ CORS_ORIGIN_WHITELIST = [
     "127.0.0.1"
 ]
 
+<<<<<<< HEAD
 OSCAR_DASHBOARD_NAVIGATION += [
     {
         'label': _('Strona administratora'),
@@ -246,3 +257,5 @@ API_ENABLED_PAYMENT_METHODS = [
     #     'permission': 'oscarapicheckout.permissions.Public',
     # },
 ]
+=======
+>>>>>>> 512f968043d0c14bb71d9d2cb75962add33a2b32
