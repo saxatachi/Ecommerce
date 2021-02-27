@@ -30,10 +30,6 @@ const Basket = props => {
     const [del,setdel]=useState(false)
     const history = useHistory();
     useEffect(() => {
-<<<<<<< HEAD
-        
-        session.get('http://127.0.0.1:8000/api/basket/')
-=======
         console.log(session)
         const data = {
             url: "https://ecommerce100.herokuapp.com/api/products/22/",
@@ -44,7 +40,6 @@ const Basket = props => {
             console.log(res.data)
         })
         session.get('https://ecommerce100.herokuapp.com/api/basket/')
->>>>>>> 512f968043d0c14bb71d9d2cb75962add33a2b32
             .then(
                 result =>{
                     setTotal(result.data.total_incl_tax)
@@ -141,10 +136,8 @@ const Basket = props => {
         </div>
     );
 };
-<<<<<<< HEAD
 const mapStateToProps = state => {
     return {
-   
     allitems : state.items.allitems,
     selecteditems : state.items.selecteditems.items,
     default : state.items.default
@@ -157,6 +150,3 @@ const mapDispatchToProps = dispatch => {
     };
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Basket);
-=======
-export default Basket;
->>>>>>> 512f968043d0c14bb71d9d2cb75962add33a2b32

@@ -19,7 +19,7 @@ const Homepage = (props) => {
         const listItems = props.default.map((item,key) => <HomepageItem allitems={props.allitems.items} items={item} /> );
     return (
         <div className="home">
-            
+            <div className="home__box">
             <div className="home__container">
                 <img className="home__container__img" src="http://127.0.0.1:8000/static/person.jpg/"></img>
               <div className="home__container__title">
@@ -28,6 +28,7 @@ const Homepage = (props) => {
                   <button>Kupuj męskie</button>
                   <button>Kupuj damskie</button>
               </div>
+            </div>
             </div>
             <div className="home__twocontainers">
             

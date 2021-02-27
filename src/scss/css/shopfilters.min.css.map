@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAEI,wBAFoB,CAEpB,EAAE,AAAA,CACE,UAAU,CAAE,IAAI,CACnB",
+    "sources": [
+        "../shopfilters.scss"
+    ],
+    "names": [],
+    "file": "shopfilters.min.css"
+}

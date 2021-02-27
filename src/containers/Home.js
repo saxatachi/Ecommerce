@@ -88,12 +88,14 @@ ResponsiveContainer.propTypes = {
 
 const HomepageLayout = () => (
   <div className="home">
-      <div className="home__container">
-        <div className="home__container__title">
+    <div className="home__box">
+        <div className="home__container">
+          <div className="home__container__title">
             <div className="home__container__title__title">ZIG KINETICA: NOWE KOLORY</div>
             <p>Podkręć swój styl elektryzującymi zestawieniami kolorystycznymi. Poczuj przypływ mocy.</p>
             <button>Kupuj męskie</button>
             <button>Kupuj damskie</button>
+          </div>
         </div>
       </div>
       <div className="home__twocontainers">
