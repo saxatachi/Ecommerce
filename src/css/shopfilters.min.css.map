@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "AAAA,AAEI,wBAFoB,CAEpB,EAAE,AAAA,CACE,UAAU,CAAE,IAAI,CACnB",
+    "mappings": "AAAA,AAEI,wBAFoB,CAEpB,EAAE,CAAA;EACE,UAAU,EAAE,IAAI;CACnB",
     "sources": [
         "../scss/shopfilters.scss"
     ],

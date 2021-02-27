@@ -1,2 +1,12 @@
-table{border-collapse:collapse}i :hover{cursor:pointer}.product__img{cursor:pointer}
+table {
+  border-collapse: collapse;
+}
+
+i :hover {
+  cursor: pointer;
+}
+
+.product__img {
+  cursor: pointer;
+}
 /*# sourceMappingURL=basketitem.min.css.map */

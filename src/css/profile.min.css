@@ -1,2 +1,74 @@
-.main{height:100%;margin-bottom:2rem}.navbar{height:40px}.profile{display:-ms-grid;display:grid;margin-bottom:2rem;-ms-grid-columns:1fr 3fr;grid-template-columns:1fr 3fr;-ms-grid-rows:100px 1fr;grid-template-rows:100px 1fr}.profile__suggestions{display:-ms-grid;display:grid;-ms-grid-columns:auto 400px;grid-template-columns:auto 400px}.profile__suggestions__list{-ms-grid-column:2;-ms-grid-column-span:1;grid-column:2/3}.profile__suggestions__list__title{display:block;padding-bottom:1rem}.profile__suggestions__list__title ::after{display:block;content:'';border:5px solid #626361;width:15%}.profile__suggestions__list__li{cursor:pointer}.profile__suggestions__list ul{display:block;list-style-type:none;padding:0;margin:0}.profile__suggestions__list ul li{display:block;width:100%;padding:1rem;text-align:center;border:#284CAA solid 1px;text-transform:uppercase;font-weight:bold;margin-bottom:0.5rem;background-color:#FAEBD7}.profile__data{display:-webkit-box;display:-ms-flexbox;display:flex;margin-left:2rem}
+.main {
+  height: 100%;
+  margin-bottom: 2rem;
+}
+
+.navbar {
+  height: 40px;
+}
+
+.profile {
+  display: -ms-grid;
+  display: grid;
+  margin-bottom: 2rem;
+  -ms-grid-columns: 1fr 3fr;
+      grid-template-columns: 1fr 3fr;
+  -ms-grid-rows: 100px 1fr;
+      grid-template-rows: 100px 1fr;
+}
+
+.profile__suggestions {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto 400px;
+      grid-template-columns: auto 400px;
+}
+
+.profile__suggestions__list {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2/3;
+}
+
+.profile__suggestions__list__title {
+  display: block;
+  padding-bottom: 1rem;
+}
+
+.profile__suggestions__list__title ::after {
+  display: block;
+  content: '';
+  border: 5px solid #626361;
+  width: 15%;
+}
+
+.profile__suggestions__list__li {
+  cursor: pointer;
+}
+
+.profile__suggestions__list ul {
+  display: block;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.profile__suggestions__list ul li {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  text-align: center;
+  border: #284CAA solid 1px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  background-color: #FAEBD7;
+}
+
+.profile__data {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 2rem;
+}
 /*# sourceMappingURL=profile.min.css.map */

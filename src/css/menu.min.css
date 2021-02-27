@@ -1,2 +1,9 @@
-i{color:white}.item .basketnumber{border-radius:15px;color:orange !important}
+i {
+  color: white;
+}
+
+.item .basketnumber {
+  border-radius: 15px;
+  color: orange !important;
+}
 /*# sourceMappingURL=menu.min.css.map */

@@ -8,5 +8,13 @@
     "python.linting.pycodestyleArgs": ["--ignore=E501"],
     "files.exclude": {
       "**/*.pyc": true
-    }
+    },
+    "liveSassCompile.settings.formats": [
+      {
+        "format": "expanded",
+        "extensionName": ".min.css",
+        "savePath": "~/../css/"
+      }
+    ]
+    
   }

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,KAAK,CAAA;EACD,eAAe,EAAE,QAAQ;CAC5B;;AAID,AAAA,CAAC,CAAC,MAAM,CAAA;EACJ,MAAM,EAAE,OAAO;CAClB;;AACD,AAAA,aAAa,CAAA;EACT,MAAM,EAAE,OAAO;CAClB",
+    "sources": [
+        "../scss/basketitem.scss"
+    ],
+    "names": [],
+    "file": "basketitem.css"
+}
