@@ -7,8 +7,22 @@ const initialState = {
   error: null,
   loading: false,
   userId : null,
+  username : null,
+  firstname: null,
+  lastname: null,
+  email: null,
 };
-
+const login = (state,action) =>{
+  console.log("o co tu chodzi")
+  console.log(action)
+  console.log(action.user)
+  return updateObject(state,{
+    username: action.user.username,
+    firstname: action.user.first_name,
+    lastname: action.user.last_name,
+    email: action.user.email
+  })
+}
 const authStart = (state, action) => {
   return updateObject(state, {
     error: null,
@@ -48,6 +62,10 @@ const reducer = (state = initialState, action) => {
       return authFail(state, action);
     case actionTypes.AUTH_LOGOUT:
       return authLogout(state, action);
+    case actionTypes.LOGIN:
+      return login(state,action);
+    case actionTypes.LOGIN_SUCCESS:
+      return login(state,action);
     default:
       return state;
   }

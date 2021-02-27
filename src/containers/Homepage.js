@@ -1,24 +1,24 @@
-import React, { Component } from 'react'
+import React, { Component,useEffect } from 'react'
 import "../css/home.min.css"
 import {connect} from "react-redux"
 import HomepageItem from './HomepageItem'
-class Homepage extends Component {
-    componentDidMount(){
-        console.log("Wszytskie Itemy")
-        console.log(this.props.allitems)
-        let items = this.props.allitems
-        console.log("Wszystkie itemy item pojedynczy")
-        console.log(items.items[0].children[0].price)
+import { useHistory } from 'react-router-dom';
+
+const Homepage = (props) => {
+    const history= useHistory()
+    const handleRegister = () =>{
+        console.log("ok")
+        history.push('/signup/')
     }
-    render() {
+    useEffect(() => {
+        let items = props.allitems
+    }, [])
+    let items= props.allitems.items
         
-        let items= this.props.allitems.items
-        console.log("itemy próba")
-        console.log(items)
-        const listItems = items.map((item,key) => <HomepageItem items={item} /> );
-        return (
-            
-            <div className="home">
+        // const listItems = items.map((item,key) => <HomepageItem items={item} /> );
+        const listItems = props.default.map((item,key) => <HomepageItem allitems={props.allitems.items} items={item} /> );
+    return (
+        <div className="home">
             
             <div className="home__container">
                 <img className="home__container__img" src="http://127.0.0.1:8000/static/person.jpg/"></img>
@@ -41,7 +41,7 @@ class Homepage extends Component {
                 </div>
               </div>
               <div className="home__twocontainers__secondcontainer">
-                <img className="home__twocontainers__secondcontainer__img" src="http://127.0.0.1:8000/static/skateboarder.jpg/"></img>
+                <img className="home__twocontainers__secondcontainer__img" src="http://127.0.0.1:8000/static/shoes.jpg/"></img>
                 <div className="home__twocontainers__secondcontainer__title">  
                     <h1> Posiadamy nową sportową kolekcje ubrań zarówno dla Pań jak i Panów</h1>
                 </div>
@@ -49,7 +49,7 @@ class Homepage extends Component {
             </div>
             <div className="home__fourcontainers">
                 <div className="home__fourcontainers__first">
-                    <img className="home__fourcontainers__first__img" src="http://127.0.0.1:8000/static/sport.jpg/"></img>
+                    <img className="home__fourcontainers__first__img" src="http://127.0.0.1:8000/static/sport1.jpg/"></img>
                 </div>
                 <div className="home__fourcontainers__second">
                     <img className="home__fourcontainers__second__img" src="http://127.0.0.1:8000/static/training.jpg/"></img>
@@ -62,52 +62,30 @@ class Homepage extends Component {
                 </div>
             </div>
             <div className="home__suggestions">
-                {/* <div className="home__suggestions__first">
-                    <img className="home__suggestions__first__img" src="http://127.0.0.1:8000/static/shoes2.jpg/"></img>
-                    <h1>{}</h1>
-                    <h1>Opis</h1>
-                </div> */}
-                
-                {/* <HomepageItem items={this.props.allitems.items[0]}/>
-                <HomepageItem items={this.props.allitems.items[0]}/>
-                <HomepageItem items={this.props.allitems.items[0]}/>
-                <HomepageItem items={this.props.allitems.items[0]}/> */}
-                {listItems}
-                {/* <div className="home__suggestions__second">
-                <img className="home__suggestions__second__img" src="http://127.0.0.1:8000/static/legs.jpg/"></img>
-                    <h1>odzież 2</h1>
-                    <h1>Opis</h1>
-                </div> */}
-                {/* <div className="home__suggestions__third">
-                    <img className="home__suggestions__third__img" src="http://127.0.0.1:8000/static/boots.jpg/"></img>
-                    <h1>odzież 3</h1>
-                    <h1>Opis</h1>
-                </div> */}
-                {/* <div className="home__suggestions__fourth">
-                <img className="home__suggestions__fourth__img" src="http://127.0.0.1:8000/static/girl.jpg/"></img>
-                    <h1>odzież 4</h1>
-                    <a><span>Cena</span></a>
-                </div> */}
+                {listItems} 
             </div>
             <div className="home__register">
                     <div className="home__register__title">
                         <span>Zarejestruj się a dostaniesz rabat -15% na wszystkie produkty</span>
                     </div>
                     <div className="home__register__button">
-                        <button>Zarejestruj się</button>
+                        <button onClick={handleRegister}>Zarejestruj się</button>
                     </div>
             </div>
             
         </div>
-        )
-    }
-}
-
+    );
+};
 const mapStateToProps = state => {
     return {
     //   array: state.items.mainarray.items
     allitems : state.items.allitems,
-    isLoaded : state.items.isAllLoadedItems
+    isLoaded : state.items.isAllLoadedItems,
+    default : state.items.default
     };
   };
 export default connect(mapStateToProps)(Homepage);
+
+
+
+

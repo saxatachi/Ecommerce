@@ -10,23 +10,28 @@ from django.conf.urls.static import static
 
 
 urlpatterns = static (settings.MEDIA_URL, document_root = settings.MEDIA_ROOT) + [
+    # path('api/', include(apps.get_app_config("oscarapicheckout").urls[0])), # Must be before oscar_api.urls
     path('api-auth/', include('shop.urls')),
     path('rest-auth/', include('rest_auth.urls')),
+    path('user/',include('user.urls')),
     path('rest-auth/registration/', include('rest_auth.registration.urls')),
     path('items/',include('items.urls')),
     path('admin/', admin.site.urls),
-    path('users/',include('shop.urls')),
+    path('default/',include('shop.urls')),
     path('address/',include('address.urls')),
     path('ratings/',include('ratings.urls')),
+    path('default/',views.DefaultRecommendationSet.as_view({'get': 'list'})),
     path('adres/',views.AddressViewSet.as_view()),
     path('it/',views.ItemListView.as_view()),
     path('charge/',views.charge,name="charge"),
     path('success/<str:args>/',views.successMsg,name="success"),
     path('i18n/', include('django.conf.urls.i18n')),
     path('', include(apps.get_app_config('oscar').urls[0])),
-    path("api/", include("oscarapi.urls")),
+    path("api/", include("oscarapi.urls"),name='api'),
     path('paypal/',views.paypal,name="paypal"),
     path('paypalcapture/',views.paypalcapture,name="paypal"),
+    path('api/user/',include("user.urls"),name='registration'),
+    
     
     # path("api/", include("oscarapi.urls")),
     

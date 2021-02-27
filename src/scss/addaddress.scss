@@ -1,8 +1,59 @@
 .addaddress{
+    display: flex;
+    margin-top: 2rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    &__title{
+        width: 100%;
+    }
+    &__firstcolumn{
+        width: 50%;
+        min-width: 400px;
+    }
+    &__secondcolumn{
+        width: 50%;
+    }
+    width: 100%;
     input{
         width: 70%;
     }
     label span{
         display: block;
     }
+    &-button{
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center;
+        button{
+            font-size: 20px;
+            color: white;
+            background-color: black;
+            padding: 1rem;
+            font-weight: 700;
+            padding-left: 4rem;
+            padding-right: 4rem;
+        }
+        button:hover{
+            transform: scale(1.1);
+            box-shadow: 3px 8px 16px 3px rgba(0,0,0,0.2);
+            
+            // background-color: #CCFFFF;
+        }
+        
+    }
+    margin-bottom: 8rem;
+}
+.addaddress__country{
+    position: relative;
+    
+}
+.fa-caret-down{
+    position: absolute;
+    color: black;
+    right: 32%;
+    top: 20%;
+    cursor: pointer;
+}
+#country{
+    width:70%;
 }

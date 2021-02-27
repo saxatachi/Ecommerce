@@ -8,7 +8,7 @@
             height: 40px;
 
             
-            width: 70%;
+            width: 100%;
             min-width: 300px;
         }
         
@@ -17,5 +17,21 @@
             font-size: 20px;
         }
 
+    }
+}
+.accept-button{
+    margin-top: 2rem;
+    display:flex;
+    justify-content: end;
+    button{
+    color: black;
+    background-color: white;
+    padding: 1rem;
+    
+    font-weight: 700;
+    }
+    button:hover{
+        box-shadow: 3px 3px 5px 3px black;
+        transform: scale(1.1);
     }
 }

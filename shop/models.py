@@ -6,7 +6,31 @@ from django.shortcuts import reverse
 from django_countries.fields import CountryField
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MinValueValidator,MaxValueValidator
+from oscar.apps.catalogue.abstract_models import AbstractProduct
+from django.utils.translation import gettext_lazy as _
 
+
+# class DefaultRecommendProducts(AbstractProduct):
+#     product = models.ForeignKey('catalogue.Product',on_delete=models.CASCADE, related_name='%(class)s_requests_created',verbose_name=_("Product"))
+from oscar.apps.catalogue.abstract_models import AbstractProduct,AbstractProductClass
+
+class Product(AbstractProduct):
+    video_url = models.URLField()
+    # product0 = models.URLField(default="127.0.0.1/item/33")
+    # product1 = models.URLField(default="127.0.0.1/item/33")
+    # product2 = models.URLField(default="127.0.0.1/item/33")
+    # product3 = models.URLField(default="127.0.0.1/item/33")
+    
+
+class DefaultRecommendation(models.Model):
+    product = models.ForeignKey('catalogue.Product',on_delete=models.CASCADE, related_name='%(class)s_requests_created1',verbose_name=_("Product1"))
+    
+
+
+
+
+
+from oscar.apps.catalogue.models import *
 CATEGORY_CHOICES = (
     ('S', 'Shirt'),
     ('SW', 'Sport wear'),
@@ -101,12 +125,13 @@ class Address1(models.Model):
     class Meta:
         verbose_name_plural = 'Addresses1'
 
-class Rating(models.Model):
-    title=models.ForeignKey(Item,on_delete=models.CASCADE)
-    username= models.OneToOneField(User,related_name='ratings',on_delete=models.CASCADE)
-    stars=models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(5)])
-    class Meta:
-        verbose_name_plural = 'Ratings'
+# class Rating(models.Model):
+#     product = models.ForeignKey('catalogue.Product',on_delete=models.CASCADE, related_name='prod',verbose_name=_("Product2"))
+#     username= models.OneToOneField(User,related_name='ratings',on_delete=models.CASCADE)
+#     stars=models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(5)])
+#     class Meta:
+#         verbose_name_plural = 'Ratings'
     
-    # def __str__(self):
-    #     return self.title
+#     def __str__(self):
+#         return self.title
+from oscar.apps.catalogue.models import *

@@ -2,8 +2,8 @@ from django.shortcuts import render,redirect
 from django.urls import reverse
 from rest_framework import viewsets
 from rest_framework.response import Response
-from .models import User,Item,Address,Address1,Rating
-from .serializers import UserSerializer, ItemSerializer, AddressSerializer,RatingSerializer
+from .models import User,Item,Address,Address1,DefaultRecommendation
+from .serializers import UserSerializer, ItemSerializer, AddressSerializer,DefaultRecommendationSerializer,ProductReviewSerializer
 from rest_framework import status,serializers
 from rest_framework.views import APIView
 from rest_framework.filters import SearchFilter,OrderingFilter
@@ -15,18 +15,40 @@ from paypalcheckoutsdk.core import PayPalHttpClient, SandboxEnvironment
 from paypalcheckoutsdk.orders import OrdersCreateRequest
 from paypalhttp import HttpError
 from paypalcheckoutsdk.orders import OrdersCaptureRequest
+from oscar.core.loading import get_model
+ProductReview = get_model("reviews", "ProductReview")
 stripe.api_key = "sk_test_9kDoV63WPpCjIGQqE95cfgql00L7UU3Wd8"
+
+class ProductReviewSet(viewsets.ModelViewSet):
+    serializer_class = ProductReviewSerializer
+    queryset = ProductReview.objects.all()
+
+
+
+class DefaultRecommendationSet(viewsets.ReadOnlyModelViewSet):
+    serializer_class = DefaultRecommendationSerializer
+    queryset = DefaultRecommendation.objects.all()
+    
+    @classmethod
+    def get_extra_actions(cls):
+        return []
+    
 class UserViewSet(viewsets.ModelViewSet):
     serializer_class=UserSerializer
     queryset = User.objects.all()
     filter_backends = [SearchFilter]
     search_fields = ['=username']
-
+    
     def get_queryset(self):
         queryset = User.objects.all()
         username = self.request.query_params.get('username',None)
-        if username is not None:
-            queryset = queryset.filter(purchaser__username=username)
+        username_ok = self.request.user
+
+        print(username_ok)
+        if username_ok is not None:
+            # queryset = queryset.filter(purchaser__username=username_ok)
+            queryset = queryset.filter(username=username_ok)
+            print(queryset)
         return queryset
     
 class ItemViewSet(viewsets.ViewSet):
@@ -74,12 +96,12 @@ class AddressViewSet(APIView):
 #     @classmethod
 #     def get_extra_actions(cls):
 #         return []  
-class RatingViewSet(viewsets.ModelViewSet):
-    serializer_class=RatingSerializer
-    queryset = Rating.objects.all()
-    # def get_queryset(self):
-    #     queryset = Rating.objects.all()
-    #     return queryset
+# class RatingViewSet(viewsets.ModelViewSet):
+#     serializer_class=RatingSerializer
+#     queryset = Rating.objects.all()
+#     # def get_queryset(self):
+#     #     queryset = Rating.objects.all()
+#     #     return queryset
 class ItemListView(generics.ListAPIView):
     serializer_class=ItemSerializer
     queryset = Item.objects.all() 

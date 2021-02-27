@@ -1,0 +1,99 @@
+// table{
+//     border: 1px solid black;
+    
+// }
+.OrderHistory{
+    width: 100%;
+    &-table{
+        width: 70%;
+    }
+}
+tr{
+    width: 100%;
+}
+.OrderHistoryItem__tr{
+    width: 100%;
+    // background-color: yellow;
+    display: block;
+}
+.OrderHistoryItem__th{
+    width: 100%;
+    // background-color: yellow;
+    display: block;
+}
+.OrderHistoryItem__tr:hover{
+    cursor: pointer;
+    background-color: #DCDCDC;
+
+}
+.OrderHistoryItem{
+    width:100%;
+}
+.OrderHistoryItem__number{
+    padding: 1rem;
+    width: 30%;
+    text-decoration: underline;
+}
+.OrderHistoryItem__date{
+    width: 20%;
+}
+.OrderHistoryItem__price{
+    width: 20%;
+}
+.OrderHistoryItem__done{
+    width: 2%;
+}
+// tr:nth-child(even) {
+//     background-color: #dddddd;
+//   }
+.orderitem-image{
+    width:100px;
+    height: 100px;
+}
+.historyorder__item{
+    display: flex;
+    border-bottom: 0.3rem solid grey ;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    &-img{
+        display: flex;
+        min-width: 100px;
+        width: 15%;
+    }
+    &__midsection{
+        display: flex;
+        min-width: 200px;
+        width: 65%;
+        
+        flex-direction: column;
+        &-title{
+            display: flex;
+            height: 50%;
+            font-size: 2rem;
+            font-weight: 800;
+        }
+        &-quantity{
+            display: flex;
+            height: 50%;
+            font-size: 1.6rem;
+            font-weight: 500;
+        }
+        
+    }
+    &-price{
+        display: flex;
+        width: 20%;
+        justify-content: end;
+        text-align: center;
+        align-items: center;
+        padding-right: 2rem;
+        font-size: 1.5rem;
+        color: red;
+        font-weight: 800;
+    }
+}
+.historyorder{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}

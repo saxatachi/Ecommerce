@@ -3,6 +3,8 @@ import "../css/shop.min.css"
 import Bar from "./Bar"
 import ShopFilters from "./ShopFilters"
 import ShopItems from "./ShopItems"
+import {connect} from 'react-redux'
+import { getCategory } from '../store/actions/items'
 class Shop extends Component {
     state={
         firstdropdownmenu: false,
@@ -25,4 +27,5 @@ class Shop extends Component {
         )
     }
 }
+
 export default Shop;

@@ -2,10 +2,16 @@ import React ,{ useState, useEffect } from 'react';
 import axios from "axios"
 import Bar from './Bar';
 import BasketItem from './BasketItem'
+import {getBasket} from "../store/actions/items";
+import { useHistory } from 'react-router-dom';
 import "../css/basket.min.css"
+import { connect } from 'react-redux';
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
 const session = axios.create({
 	withCredentials: true
 });
+
 const configAxios = {
     headers: {
         'Content-Type': 'application/json',
@@ -18,49 +24,77 @@ const Basket = props => {
     const [load, setLoad] = useState(false);
     const [error, setError] = useState('');
     const [array, setArray] = useState([]);
-    
+    const [lastDelete, setlastDelete] = useState();
+    const [total,setTotal] = useState();
+    const [fullitem,setfullitem]= useState();
+    const [del,setdel]=useState(false)
+    const history = useHistory();
     useEffect(() => {
-        console.log(session)
-        const data = {
-            url: "http://127.0.0.1:8000/api/products/22/",
-            quantity: 1,
-        }
-        session.post('http://127.0.0.1:8000/api/basket/add-product/',data)
-        .then(res =>{
-            console.log(res.data)
-        })
+        
         session.get('http://127.0.0.1:8000/api/basket/')
             .then(
                 result =>{
-                    console.log(result.data.lines)
+                    setTotal(result.data.total_incl_tax)
                     session.get(result.data.lines)
                     .then(res =>{
+                        setArray(res.data)
+                    })
+                }
+            )
+    }, []);
+    useEffect(()=>{
+        session.get('http://127.0.0.1:8000/api/basket/')
+            .then(
+                result =>{
+                    console.log("resultatowa data")
+                    console.log(result.data)
+                    setTotal(result.data.total_incl_tax)
+                    session.get(result.data.lines)
+                    .then(res =>{
+                        console.log("rezultatowa linia")
                         console.log(res.data)
                         setArray(res.data)
                         
                     })
                 }
             )
+    },[del])
+    const handleBack=()=>{
+        history.push('/shop/')
+    }
+    const handleForward=()=>{
+        history.push('/payments/')
+    }
+    const handleDelete=()=>{
+        setdel(!del)
+        session.get('http://127.0.0.1:8000/api/basket/')
+            .then(res=>{
+                console.log(res.data)
+            })
         
-    }, []);
-    
-    const list = array.map((item,key)=><BasketItem items={item}/>)
-    
+    }
+    const handleTotal=() =>{
+        session.get('http://127.0.0.1:8000/api/basket/')
+            .then(
+                result =>{
+                    setTotal(result.data.total_incl_tax)
+                }
+            )
+    }
+
+    let list = array.map((item,key)=><BasketItem del={handleDelete} handle={handleTotal} allitems={array} items={item} key={key}/>)
     return (
         <div className="basket">
             <h1>saddsasaddsa</h1>
             <Bar />
             <div className="basket__title">
                 <div className="basket__title__h1">
-                    <h1>Twój koszyk</h1>
+                    Twój koszyk
                 </div>
             </div>
             <div className="basket__table">
                 <table>
                 <thead>
-                    
-                    
-                    
                     <tr>
                         <th className="headproduct">Produkt</th>
                         <th className="headprice">Cena</th>
@@ -69,48 +103,22 @@ const Basket = props => {
                     </tr>
                 </thead>
                 <tbody>
-                    
-                    {/* <BasketItem />
-                    <BasketItem /> */}
                     {list}
-
-                    <tr>
-                        <th className="product"><i class="fa fa-times-circle fa-2x" aria-hidden="true"></i><img src="http://127.0.0.1:8000/static/fashion.jpg/"></img><span className="product">Tytuł produktu</span></th>
-                        <th className="price"><span className="price">50.99 </span></th>
-                        <th className="quantity"><span className="quantity"><i class="fa fa-minus" aria-hidden="true"></i>1<i class="fa fa-plus" aria-hidden="true"></i></span></th>
-                        <th className="summary"><span className="summary">50.99</span></th>
-                        
-                    </tr>
-                    
-                    <tr>
-                        <th className="product"><i class="fa fa-times-circle fa-2x" aria-hidden="true"></i><img src="http://127.0.0.1:8000/static/fashion.jpg/"></img><span className="product">Tytuł produktu</span></th>
-                        <th className="price"><span className="price">50.99 </span></th>
-                        <th className="quantity"><span className="quantity"><i class="fa fa-minus" aria-hidden="true"></i>1<i class="fa fa-plus" aria-hidden="true"></i></span></th>
-                        <th className="summary"><span className="summary">50.99</span></th>
-                        
-                    </tr>
-                    <tr>
-                        <th className="product"><i class="fa fa-times-circle fa-2x" aria-hidden="true"></i><img src="http://127.0.0.1:8000/static/fashion.jpg/"></img><span className="product">Tytuł produktu</span></th>
-                        <th className="price"><span className="price">50.99 </span></th>
-                        <th className="quantity"><span className="quantity"><i class="fa fa-minus" aria-hidden="true"></i>1<i class="fa fa-plus" aria-hidden="true"></i></span></th>
-                        <th className="summary"><span className="summary">50.99</span></th>
-                        
-                    </tr>
                 </tbody>
                 </table>
             </div>
             <div className="summary">
                 <div className="summary__firstrow">
-                    <span id="total">Wartość twojego zamówienia (bez dostawy): 100zł</span> 
+                    <span id="total">Wartość twojego zamówienia (bez dostawy): {total} zł</span> 
                 </div>
                 
             </div>
             <div className="summary2">
                 <div className="summary2__secondrow">
-                    <div className="summary2__secondrow__back">
+                    <div onClick={handleBack} className="summary2__secondrow__back">
                         Kontynnuj zakupy
                     </div>
-                    <div className="summary2__secondrow__forward">
+                    <div onClick={handleForward} className="summary2__secondrow__forward">
                         Dalej
                     </div>
                      
@@ -120,4 +128,18 @@ const Basket = props => {
         </div>
     );
 };
-export default Basket;
+const mapStateToProps = state => {
+    return {
+   
+    allitems : state.items.allitems,
+    selecteditems : state.items.selecteditems.items,
+    default : state.items.default
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        getBasket: () =>dispatch(getBasket())
+  
+    };
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Basket);

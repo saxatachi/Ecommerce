@@ -1,5 +1,5 @@
 from rest_framework.routers import DefaultRouter
-from .views import UserViewSet
+from .views import UserViewSet,ProductReviewSet,DefaultRecommendationSet
 router = DefaultRouter()
-router.register(r'',UserViewSet,base_name='users')
+router.register(r'',DefaultRecommendationSet,base_name='users')
 urlpatterns = router.urls

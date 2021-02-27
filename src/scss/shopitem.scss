@@ -1,0 +1,30 @@
+.shop__item{
+    display:flex;
+    height:20%;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+
+.shop__item__title{
+    display: flex;
+    flex-basis: 100%;
+    font-size: 20px;
+    font-weight: 300;
+    height: 20px;
+    
+    
+    
+    
+}
+.shop__item__price{
+    display: flex;
+    flex-basis: 100%;
+    font-size: 16px;
+    font-weight: 600;
+    color: red;
+    height: 50px;
+    align-items: flex-start;
+
+}

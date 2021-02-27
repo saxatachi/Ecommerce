@@ -17,7 +17,14 @@ export const authSuccess = user => {
     user: user,
   };
 };
-
+export const getloginSuccess = (user) =>{
+  console.log("getloginSuccess")
+  console.log(user)
+  return {
+    type: actionTypes.LOGIN_SUCCESS,
+    user: user
+  }
+}
 export const authFail = error => {
   return {
     type: actionTypes.AUTH_FAIL,
@@ -66,7 +73,26 @@ export const authLogin = (username, password) => {
       });
   };
 };
-
+export const getlogin = () => {
+  return dispatch =>{
+    dispatch(authStart());
+    session.get("http://127.0.0.1:8000/api/login/")
+    .then(res=>{
+      console.log("wynikz actions")
+      console.log("dis")
+      console.log(res.data)
+      let user = {
+        first_name: res.data.first_name,
+        last_name: res.data.last_name,
+        username: res.data.username,
+        email: res.data.email
+      }
+      console.log(user)
+      dispatch(getloginSuccess(user))
+    })
+    
+  }
+}
 export const authSignup = (username, email, password1, password2) => {
   return dispatch => {
     dispatch(authStart());

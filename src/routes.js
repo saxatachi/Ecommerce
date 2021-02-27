@@ -12,16 +12,19 @@ import App from "./containers/Payments";
 import Payments from "./containers/Payments";
 import Basket from "./containers/Basket";
 import Item from "./containers/Item"
+import Item1 from "./containers/Item1";
+import Checkout from "./containers/Checkout";
 const BaseRouter = () => (
   <Hoc>
     <Route path="/login" component={Login} />
     <Route path="/signup" component={Signup} />
-    <Route path="/profile/:id" component={Profile} />
+    <Route path="/profile/" component={Profile} />
     <Route path="/shop/" component={Shop} />
     <Route exact path="/" component={Homepage} />
-    <Route path="/payments" component={Payments} />
-    <Route path="/item/:id" component={Item}/>
+    <Route path="/payments" component={Checkout} />
+    <Route path="/item/:id" component={Item1}/>
     <Route path="/basket/" component={Basket}/>
+    
   </Hoc>
 );
 

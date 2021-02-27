@@ -1,3 +1,25 @@
+$breakpoints: (
+    mobile: (min-width: 320px),
+    min-pads: (min-width: 481px),
+    small-screen: (min-width: 769px),
+    desktops: (min-width: 1025px),
+    extra-large: (min-width: 1201px)
+    );
+@mixin mq($breakpoint){
+    $size: map-get($breakpoints,$breakpoint);
+    @if($size){
+        @media #{$size}{
+            @content;
+        }
+    }@else{
+        @error '"#{$breakpoint}"- błąd';
+    }
+}
+
+.basket{
+    margin-bottom: 2rem;
+}
+
 .basket__title{
     display: flex;
     width: 100%;
@@ -8,6 +30,17 @@
     &__h1{
         display: flex;
         width:70%;
+        font-size: 24px;
+        @include mq(mobile){
+            font-size:1.5rem;
+            font-weight: 800;
+        }
+        @include mq(min-pads){
+            font-size:1.8rem;
+            font-weight: 800;
+            
+        }
+       
     }
 }
 .basket__table{
@@ -15,77 +48,171 @@
     justify-content: center;
     align-items: center;
     width:100%;
-    
     align-items: center;
     table{
         // align-items:start;
         width:70%;
+        border-collapse: collapse;
+        @include mq(min-pads){
+            width: 70%;
+            margin-left: 0.5rem;
+            border-collapse: collapse;
+        }
         
     }
     th.headproduct{
         
         width: 40%;
-        text-align: start;
-        padding-left: 2rem;
+        text-align: center;
+        // padding-left: 2rem;
         font-size: 20px;
         color:white;
+        @include mq(mobile){
+            font-size: 12px;
+            padding-left: 1rem;
+        }
+        @include mq(min-pads){
+            font-size:18px;
+            font-weight: 800;
+        }
         
     }
     th.headprice{
         width:10%;
-        text-align: start;
-        padding-left: 2rem;
+        text-align: center;
+        // padding-left: 2rem;
         font-size: 20px;
         color:white;
+        @include mq(mobile){
+            font-size: 12px;
+        }
+        @include mq(min-pads){
+            font-size: 18px;
+            
+        }
+        @include mq(desktops){
+            font-size:1.5rem;
+            font-weight: 800;
+            // padding-left: 2rem;
+            margin-left: 2rem;
+        }
 
     }
     th.headquantity{
         width:10%;
-        text-align: start;
-        padding-left: 2rem;
+        text-align: center;
+        // padding-left: 2rem;
         font-size: 20px;
         color:white;
+        @include mq(mobile){
+            font-size: 12px;
+        }
+        @include mq(min-pads){
+            font-size: 18px;
+            
+        }
     }
     th.headsummary{
         width:10%;
-        text-align: start;
-        padding-left: 2rem;
+        text-align: center;
+        // padding-left: 2rem;
         font-size: 20px;
         color:white;
+        @include mq(mobile){
+            font-size: 12px;
+        }
+        @include mq(min-pads){
+            font-size: 18px;
+            
+        }
     }
     .product{
         display:flex;
         font-size: 18px;
         padding: 2rem;
         align-items: center;
+        @include mq(mobile){
+            font-size: 12px;
+            padding: 0rem;
+        }
+        @include mq(min-pads){
+            font-size: 16px;
+            padding: 1rem;
+            
+        }
+        @include mq(desktops){
+            display:flex;
+            font-size: 18px;
+            padding: 2rem;
+            align-items: center;
+            font-size:20px;
+            font-weight: 800;
+            
+        }
         span{
             margin-left: 2rem;
+            @include mq(mobile){
+                margin-left: 0rem;
+            }
         }
         img{
+            color: black;
             height:100px;
             width:100px;
+            @include mq(mobile){
+                height:50px;
+                width:50px;
+            }
+            @include mq(min-pads){
+                height: 70px;
+                width:70px;
+            }
+            @include mq(desktops){
+                height: 100px;
+                width: 100px;
+            }
         }
         i{
             margin-right: 2rem;
+            color: black;
+            @include mq(mobile){
+                margin-right: 0.5rem;
+            }
+            @include mq(desktops){
+                margin-right: 2rem;
+                color: black;
+            }
         }
     }
     .price{
         
         padding: 2rem;
+        @include mq(mobile){
+            padding: 1rem;
+        }
     }
     .quantity{
         font-size: 20px;
         padding: 2rem;
+        @include mq(mobile){
+            padding: 0rem;
+        }
         
     }
     .summary{
         font-size: 20px;
         padding: 2rem;
+        @include mq(mobile){
+            padding: 0rem;
+        }
     }
     thead{
         height: 50px;
         background-color: #284CAA;
         padding-left: 2rem;
+        @include mq(mobile){
+            padding-left: 0rem;
+        }
         // text-align: left;
         
         
@@ -100,6 +227,13 @@ span.price{
     color: #284CAA;
     font-size: 1.5rem;
     font-weight: 900;
+    @include mq(mobile){
+        font-size: 1rem;
+    }
+    @include mq(min-pads){
+        font-size: 1.5rem;
+    }
+    
     
     
 }
@@ -107,34 +241,57 @@ span.summary{
     color:#284CAA;
     font-size: 1.5rem;
     font-weight: 900;
+    @include mq(mobile){
+        font-size: 1rem;
+    }
     
     
 }
 span.quantity{
     
     i{
-        
+        color: black;
         margin-right: 5px;
         margin-left: 5px;
         // background-color: grey;
         // color:white;
+
     }
 }
 span.product{
     font-size: 1.6rem;
     font-weight: 900;
+    @include mq(mobile){
+        font-size: 1rem;
+    }
 }
 .summary{
     display:flex;
-    width:100%;
+    
     justify-content: center;
     &__firstrow{
         display: flex;
-        justify-content: flex-end;
+        // justify-content: flex-end;
         // background-color: red;
-        width:70%;
+        width:50%;
         height:50px;
         align-items: center;
+        margin-top: 1rem;
+        @include mq(mobile){
+            width: 100%;
+            justify-content: flex-start;
+            
+        }
+        @include mq(min-pads){
+            justify-content: center;
+            width: 100%;
+        }
+        @include mq(desktops){
+            justify-content: flex-end;
+            width:70%;
+            
+        }
+        
     }
     
 }
@@ -142,8 +299,17 @@ span#total{
     padding: 2rem;
     background-color: #284CAA;
     color:white;
-    font-size: 1.7rem;
+    font-size: 1rem;
     font-weight: 900;
+
+    @include mq(mobile){
+        margin-top: 2rem;
+        font-size: 12px;
+        
+    }
+    @include mq(min-pads){
+        font-size: 18px;
+    }
 }
 .summary2{
     
@@ -158,6 +324,18 @@ span#total{
                 width:70%;
                 color:#284CAA;
                 font-size: 1.7rem;
+                @include mq(mobile){
+                    font-size: 1rem;
+                    padding: 0rem;
+                }
+                @include mq(min-pads){
+                    font-size: 1.5rem;
+                    padding: 1rem;
+                    margin-top: 1rem;
+                }
+            }
+            &__back:hover{
+                cursor: pointer;
             }
             &__forward{
                 display: flex;
@@ -167,9 +345,50 @@ span#total{
                 background-color: red;
                 color: white;
                 font-size: 1.7rem;
+                @include mq(mobile){
+                    font-size: 1rem;
+                    padding: 0rem;
+                }
+                @include mq(min-pads){
+                    font-size: 1.5rem;
+                    padding: 1rem;
+                    margin-top: 1rem;
+                }
+                
+            }
+            &__forward:hover{
+                cursor: pointer;
             }
         }
        
         
     
+}
+.table__head{
+    background-color: red;
+    width: 100%;
+}
+th.quantity{
+    text-align: center;
+}
+th.price{
+    text-align: center;
+}
+th.summary{
+    text-align: center;
+}
+th.headprice{
+    text-align: center;
+}
+tr{
+    border-bottom: 0.3rem solid grey;
+}
+.fa-plus:hover{
+    cursor:pointer;
+}
+.fa-minus:hover{
+    cursor:pointer;
+}
+th.product:hover{
+    cursor: pointer;
 }

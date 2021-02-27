@@ -11,17 +11,36 @@ const initialState = {
     allerror: null,
     allloading: false,
     isAllLoadedItems:false,
-    mainarray: null,
-    for: false
+    allitems: null,
+    for: false,
+    default: [],
+    selecteditems: null,
+    basketlength: 0,
+    userAddress: null,
+    category: [],
+    categorydata: false,
+    useraddress: null 
+    
   };
+const getCategory = (state,action)=>{
+  return updateObject(state,{
+    category: action.category
+  })
+}
 const getChildren = (state,action)=>{
   return updateObject(state,{
     for: true
   })
 }
+const getBasket = (state,action)=>{
+  return updateObject(state,{
+    basketlength: action.basketlength
+
+  })
+}
 const getArray = (state,action) =>{
   return updateObject(state,{
-    mainarray: action
+    allitems: action
   });
 }
 const getAllItemsStart = (state, action) => {
@@ -32,9 +51,8 @@ const getAllItemsStart = (state, action) => {
 const getAllItemsSuccess = (state, action) => {
   return updateObject(state, {
     allitems: action,
-    allerror: null,
-    allloading: false,
-    allisLoadeditems:true
+    isLoadeditems: true
+    
     
   });
 };
@@ -66,6 +84,21 @@ const getItemsSuccess = (state, action) => {
       loading: false
     });
   };
+  const getSelectedItems= (state,action)=>{
+    return updateObject(state,{
+      selecteditems: action
+    })
+  }
+  const getDefaultSuggestions = (state,action)=>{
+    return updateObject(state,{
+      default: action.items
+    })
+  }
+  const getUserAddress = (state,action)=>{
+    return updateObject(state,{
+        useraddress: action
+    })
+  }
 const reducer = (state = initialState, action) => {
     switch (action.type) {
       case actionTypes.GET_ARRAY:
@@ -84,6 +117,16 @@ const reducer = (state = initialState, action) => {
         return getItemsSuccess(state, action);
       case actionTypes.GET_ITEMS_FAIL:
         return getItemsFail(state, action);
+      case actionTypes.GET_SELECTED_ITEMS:
+        return getSelectedItems(state,action);
+      case actionTypes.GET_DEFAULT_SUGGESTIONS:
+        return getDefaultSuggestions(state,action)
+      case actionTypes.GET_BASKET:
+        return getBasket(state,action)
+      case actionTypes.GET_CATEGORY:
+        return getCategory(state,action)
+      case actionTypes.GET_USERADDRESS:
+        return getUserAddress(state,action)
       default:
         return state;
     }

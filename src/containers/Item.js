@@ -1,38 +1,81 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 import "../css/items.min.css"
-import { useHistory } from 'react-router-dom';
 import Dropdown from 'react-dropdown';
-import {connect} from "react-redux"
+import { useHistory } from 'react-router-dom';
+import {connect} from "react-redux";
+import ItemVariants from "./ItemVariants"
+import Rating from 'react-rating'
+import ReactStars from 'react-rating-stars-component'
+import * as Scroll from 'react-scroll';
+import { Link, Element , Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
+import RecommendProducts from './RecommendProducts';
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
 
-class Item extends Component {
+
+const session = axios.create({
+	withCredentials: true
+});
+class Item extends Component {  
+    
     componentDidMount(){
         
+        window.scrollTo(0, 0);
         const id=this.props.match.params.id
         const it=null
         let all=this.props.allitems.items
         for(let i=0;i<all.length;i++){
             if(all[i].id==id){
-                console.log(all[i].images[0].original)
-                this.setState({
-                    
-                    item: all[i],
-                    mainimage: all[i].images[0].original
+                let recommended=all[i].recommended_products
+                session.get(all[i].children[0].url)
+                    .then(res=>{
+                        if(res.data.images[0]!== undefined){
+
+                        this.setState({
+                            mainimage: res.data.images[0].original
+                        })
+                        
+                        }else{
+                            this.setState({
+                                alt: "brak zdjęcia"
+                            })
+                        }
+                    })
+                for(let i=0;i<recommended.length;i++){
+                    session.get(recommended[i])
+                        .then(res=>{
+                            this.setState(previousState => ({
+                                recommended_products: [...previousState.recommended_products,res.data]
+                            }))
+                        })
+                }
+                this.setState({  
+                    olditem: all[i],
+                    item: all[i].children[0],
                 })
+                
+                
             }
         }
     }
     state={
-        
+        object : this.props.location.state.obj,
+        active: this.props.location.state.activeid,
+        recommended_products: [],
+        olditem: null,
         item: null,
         firstDropdown: false,
         secondDropdown: false,
         mainimage: null,
-    }
-    sizeRef = React.createRef();
-    quantityRef = React.createRef()
+        quantity: 1,
+        alt: "",
+        item_images: []
+        }
+    // sizeRef = React.createRef();
+    // quantityRef = React.createRef()
     
     handleDropdown = () =>{
-        console.log("wybierz rozmiar")
         this.setState({
             firstDropdown: !this.state.firstDropdown
         })
@@ -41,6 +84,21 @@ class Item extends Component {
         this.setState({
             secondDropdown: !this.state.secondDropdown
         })
+    }
+    handleImage = (item1) =>{
+        session.get(item1.url)
+            .then(res=>{
+               this.setState({
+                   mainimage: res.data.images[0].original,
+                   item_images: res.data.images
+               })
+
+            })
+        if(this.state.item !== null){
+        this.setState({
+            item: item1
+        })
+        }    
     }
     handleImg = (e) =>{
         this.setState({
@@ -59,11 +117,25 @@ class Item extends Component {
         let text = e.target.textContent
         this.quantityRef.current.textContent = text
         this.setState({
+            quantity: e.target.textContent,
             secondDropdown: !this.state.secondDropdown
         })
     }
-    
-    
+    handleBuy = () => {
+        let data ={
+            "url": this.state.item.url,
+            "quantity": this.state.quantity
+        }
+        session.post('http://127.0.0.1:8000/api/basket/add-product/',data)
+        
+        
+    }
+    handleObject = (item) =>{
+        
+        this.setState({
+            object : item
+        })
+    }
     render() {
         return (
             
@@ -71,57 +143,40 @@ class Item extends Component {
                 {this.state.item !== null && 
                 <>
                 <div className="itemcontainer__breadcrumb">
-                    <h1>{this.state.item.categories[0]}</h1>
+                    {/* <h1>{this.state.olditem.categories[0]}</h1> */}
+                    
                 </div>
-                
                 <div className="itemcontainer__image">
                     <div className="itemcontainer__image__allimages">
-                        {this.state.item.images.map((item)=><div onClick={this.handleImg} className="itemcontainer__image__allimages-image" ><img src={item.original} alt="obrazek"/>
-                        <br /></div>)}
+                        {/* {this.state.item_images.map((item,key)=><div onClick={this.handleImg} className="itemcontainer__image__allimages-image" ><img src={item.original} alt="obrazek"/></div>)} */}
                     </div>
-                    <img src={this.state.mainimage}></img>
+                    {/* <img src={this.state.object.images[0].original}></img> */}
                     
                     <div className="itemcontainer__recommendproducts">
                     <div className="itemcontainer__recommendproducts__title">
                         <h1>SKOMPLETUJ SWÓJ LOOK</h1>
                     </div>
-                
-                
                     <div className="itemcontainer__recommendproducts__cards">
-                        
-                        <div className="itemcontainer__recommendproducts__card">
-                            <img src="http://127.0.0.1:8000/media/images/products/2020/04/image_not_found.jpg.jpg" alt="obrazek"/>
-                            Cena : 100zł
-                        </div>
-                        <div className="itemcontainer__recommendproducts__card">
-                            <img src="http://127.0.0.1:8000/media/images/products/2020/04/image_not_found.jpg.jpg" alt="obrazek"/>
-                            Cena : 100zł
-                        </div>
-                        <div className="itemcontainer__recommendproducts__card">
-                            <img src="http://127.0.0.1:8000/media/images/products/2020/04/image_not_found.jpg.jpg" alt="obrazek"/>
-                            Cena : 100zł
-                        </div>
-                        <div className="itemcontainer__recommendproducts__card">
-                            <img src="http://127.0.0.1:8000/media/images/products/2020/04/image_not_found.jpg.jpg" alt="obrazek"/>
-                            Cena : 100zł
-                        </div>
+                        {/* {this.state.recommended_products.map((item,key)=><RecommendProducts item={item}/>)} */}
                     </div>
                     </div>
                 </div>
                 
                 <div className="itemcontainer__orderinformation">
                     <div className="itemcontainer__orderinformation__review">
-                        Recenzja
+                        Średnia ocen produktu
+                        <ReactStars count={5} edit={false} size={24} value={4.75}color2={'#ffd700'} />
                     </div>
                     
                     <div className="itemcontainer__orderinformation__category">
-                        {this.state.item.categories[0]}
+                        {/* {this.state.item.categories[0]} */}
                     </div>
                     <div className="itemcontainer__orderinformation__name">
-                        {this.state.item.title}
+                        {this.state.object.title}
                     </div>
                     <div className="itemcontainer__orderinformation__price">
-                        {this.state.item.children[0].price.incl_tax} {this.state.item.children[0].price.currency}
+                        {this.state.object.price.incl_tax} zł
+                        
                     </div>
                     <div className="itemcontainer__orderinformation__default">
                         <div className="itemcontainer__orderinformation__default-first">
@@ -129,9 +184,12 @@ class Item extends Component {
                         </div>
                         <h3>Kup najgorętsze hity ze ZNIŻKĄ 25%. Dowiedz się więcej</h3>
                     </div>
+                    
                     <div className="itemcontainer__orderinformation__variants">
-                        <h3>Dostępne warianty</h3>
-                        {this.state.item.children.map((img)=> console.log(img))}
+                    <h3>Dostępne warianty</h3>
+                        <div className="itemcontainer__orderinformation__variants__images">
+                            {/* {this.state.olditem.children.map((items)=><ItemVariants url={this.state.object.url} setimage={this.handleImage} item={items} handleObject={this.handleObject}/>)} */}
+                        </div>
                     </div>
                     <div className="itemcontainer__orderinformation__buttons">
                         
@@ -171,7 +229,7 @@ class Item extends Component {
                             </div>
                             </div>
                         <div className="itemcontainer__orderinformation__buttons__add">
-                            <button><span>Dodaj do Koszyka</span></button>
+                            <button onClick={this.handleBuy}><span>Dodaj do Koszyka</span></button>
                         </div>
                     </div>
                     <div className="itemcontainer__orderinformation__default">
@@ -193,7 +251,6 @@ class Item extends Component {
 
 const mapStateToProps = state => {
     return {
-    //   array: state.items.mainarray.items
     allitems : state.items.allitems,
     isLoaded : state.items.isAllLoadedItems
     };

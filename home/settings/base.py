@@ -1,12 +1,22 @@
 import os
 from oscar.defaults import *
-import django_heroku
+from django.utils.translation import gettext_lazy as _
+
 #BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '-05sgp9!deq=q1nltm@^^2cc+v29i(tyybv3v2t77qi66czazj'
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+# OSCARAPI_USERADDRESS_FIELDS = ['id','title','country']
+# OSCARAPI_PRODUCT_FIELDS = ["url","upc","id","title",'price','structure','children','rating']
+# OSCARAPI_PRODUCT_FIELDS = ['__all__']
+# OSCARAPI_PRODUCT_ATTRIBUTE_VALUE_FIELDS= ['product','code','value','name']
+# OSCARAPI_CHILDPRODUCTDETAIL_FIELDS = ['url','price','availability']
+#OSCARAPI_CHILDPRODUCTDETAIL_FIELDS=['parent','availability','id','url','price','rating']
+#OSCARAPI_CHILDPRODUCTDETAIL_FIELDS='__all__'
+OSCARAPI_OVERRIDE_MODULES = ["home.mycustomapi"]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+print(STATIC_ROOT)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_TMP = os.path.join(BASE_DIR, 'static')
 os.makedirs(STATIC_TMP, exist_ok=True)
@@ -70,12 +80,14 @@ INSTALLED_APPS = [
     'treebeard',
     'sorl.thumbnail',
     'django_tables2',
+    'oscarapicheckout',
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
+    
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -121,33 +133,34 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'build/static')]
 
 SITE_ID = 1
 
-REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': (
-        'django_filters.rest_framework.DjangoFilterBackend',
+# REST_FRAMEWORK = {
+#     'DEFAULT_FILTER_BACKENDS': (
+#         'django_filters.rest_framework.DjangoFilterBackend',
         
-    ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.AllowAny',
-    ),
+#     ),
+#     'DEFAULT_PERMISSION_CLASSES': (
+#         'rest_framework.permissions.AllowAny',
+#     ),
     
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
-    ),
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'rest_framework.authentication.TokenAuthentication',
+#     ),
     
-}
+# }
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 AUTH_USER_MODEL = 'shop.User'
-
-REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'shop.serializers.UserSerializer',
-    'TOKEN_SERIALIZER': 'shop.serializers.TokenSerializer'
-}
-REST_AUTH_REGISTER_SERIALIZERS = {
-    'REGISTER_SERIALIZER': 'shop.serializers.CustomRegisterSerializer'
-}
+OSCARAPI_USER_FIELDS = ['first_name','last_name','username','email']
+OSCAR_ALLOW_ANON_CHECKOUT = True
+# REST_AUTH_SERIALIZERS = {
+#     'USER_DETAILS_SERIALIZER': 'shop.serializers.UserSerializer',
+#     'TOKEN_SERIALIZER': 'shop.serializers.TokenSerializer'
+# }
+# REST_AUTH_REGISTER_SERIALIZERS = {
+#     'REGISTER_SERIALIZER': 'shop.serializers.CustomRegisterSerializer'
+# }
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
@@ -160,12 +173,76 @@ CORS_ORIGIN_WHITELIST = [
     "https://example.com",
     "https://sub.example.com",
     "http://127.0.0.1:8000",
+    "http://127.0.0.1:3000",
     "http://localhost:3000",
     "http://localhost:8000",
     "http://127.0.0.1:9000",
     "127.0.0.1"
 ]
-<<<<<<< HEAD
-django_heroku.settings(locals())
-=======
->>>>>>> cb742ee8b6d071a90508ce573502c200a68c72cf
+
+OSCAR_DASHBOARD_NAVIGATION += [
+    {
+        'label': _('Strona administratora'),
+        'icon': 'icon-dashboard',
+        'url_name': 'admin:index',
+        # 'access_fn': lambda user, url_name, url_args, url_kwargs: user.is_staff,
+    }
+]
+OSCAR_DASHBOARD_NAVIGATION += [
+    {
+        'label': _('Strona administratora'),
+        'icon': 'icon-dashboard',
+        'url_name': 'admin:index',
+        # 'access_fn': lambda user, url_name, url_args, url_kwargs: user.is_staff,
+    }
+]
+OSCAR_DASHBOARD_NAVIGATION += [
+    {
+        'label': 'Domyślne Produkty',
+        'icon': 'icon-dashboard',
+        'children': [
+            {
+                'label': _('Domyślne produkty'),
+                'url_name': 'admin:index',
+            },
+         ]
+        
+        # 'access_fn': lambda user, url_name, url_args, url_kwargs: user.is_staff,
+    }
+]
+# Needed by oscarapicheckout
+ORDER_STATUS_PENDING = 'Pending'
+ORDER_STATUS_PAYMENT_DECLINED = 'Payment Declined'
+ORDER_STATUS_AUTHORIZED = 'Authorized'
+
+# Other statuses
+ORDER_STATUS_SHIPPED = 'Shipped'
+ORDER_STATUS_CANCELED = 'Canceled'
+
+# Pipeline Config
+OSCAR_INITIAL_ORDER_STATUS = ORDER_STATUS_PENDING
+OSCARAPI_INITIAL_ORDER_STATUS = ORDER_STATUS_PENDING
+OSCAR_ORDER_STATUS_PIPELINE = {
+    ORDER_STATUS_PENDING: (ORDER_STATUS_PAYMENT_DECLINED, ORDER_STATUS_AUTHORIZED, ORDER_STATUS_CANCELED),
+    ORDER_STATUS_PAYMENT_DECLINED: (ORDER_STATUS_AUTHORIZED, ORDER_STATUS_CANCELED),
+    ORDER_STATUS_AUTHORIZED: (ORDER_STATUS_SHIPPED, ORDER_STATUS_CANCELED),
+    ORDER_STATUS_SHIPPED: (),
+    ORDER_STATUS_CANCELED: (),
+}
+
+OSCAR_INITIAL_LINE_STATUS = ORDER_STATUS_PENDING
+OSCAR_LINE_STATUS_PIPELINE = {
+    ORDER_STATUS_PENDING: (ORDER_STATUS_SHIPPED, ORDER_STATUS_CANCELED),
+    ORDER_STATUS_SHIPPED: (),
+    ORDER_STATUS_CANCELED: (),
+}
+API_ENABLED_PAYMENT_METHODS = [
+    {
+        'method': 'oscarapicheckout.methods.Cash',
+        'permission': 'oscarapicheckout.permissions.StaffOnly',
+    },
+    # {
+    #     'method': 'some.other.methods.CreditCard',
+    #     'permission': 'oscarapicheckout.permissions.Public',
+    # },
+]

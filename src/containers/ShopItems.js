@@ -1,38 +1,33 @@
 import React, { Component } from 'react';
 import "../css/shopitems.min.css"
 import {connect} from 'react-redux'
-class ShopItems extends Component {
-    
-    
-    render() {
-        console.log(this.props.allitems)
-        const array= this.props.allitems
-        console.log("tablica")
-        console.log(array.items)
-        const ListItems=array.items.map((item)=>
-        <div className="shop__items__elements">
+import ShopItem from './ShopItem'
+import Slider from "react-slick";
 
-                <div className="shop__items__elements__img">
-                    <img src={item.images[0].original}/>
-                </div>
-                {item.categories}<br/>
-                {item.title}<br/>
-                {item.price}
-                
-            
-        </div>
-        )
+
+class ShopItems extends Component {
+    render() {
+        this.state = {
+            categories : false,
+            allitems : true,
+            array: []
+        }
+        const settings = {
+            dots: true,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 1,
+            slidesToScroll: 1
+          };
+        let CategoryItems
+        if(this.props.category.length> 0 ){
+            CategoryItems = this.props.category.map((item)=><ShopItem items={item}/>)
+        }
+        const ListItems= this.props.selecteditems.map((item)=><ShopItem items={item}/>)
         return (
-            
             <div className="shop__items">
-                <div className="shop__items__title">
-                    <h1>Tu bedą itemy</h1>
-                </div>
-                
-                    {ListItems}
+                {this.props.category.length> 0  ? CategoryItems : ListItems}
             </div>
-            
-            
         );
     }
 }
@@ -40,6 +35,8 @@ const mapStateToProps = state => {
     return {
     //   array: state.items.mainarray.items
     allitems : state.items.allitems,
+    selecteditems : state.items.selecteditems.items,
+    category: state.items.category
     };
   };
 export default connect(mapStateToProps)(ShopItems);
