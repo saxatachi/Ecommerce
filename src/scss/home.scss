@@ -5,11 +5,21 @@ $sport: 'http://127.0.0.1:8000/static/sport.jpg/';
 $training: 'http://127.0.0.1:8000/static/training.jpg/';
 $balancing: 'http://127.0.0.1:8000/static/balancing.jpg/';
 $children: 'http://127.0.0.1:8000/static/children.jpg/';
+@mixin for-phone-only {
+    @media (max-width: 599px) { @content; }}
+@mixin for-tablet-portrait-up {
+    @media (min-width: 600px) { @content; }}
+@mixin for-tablet-landscape-up {
+    @media (min-width: 900px) { @content; }}
+@mixin for-desktop-up {
+    @media (min-width: 1200px) { @content; }}
+@mixin for-big-desktop-up {
+    @media (min-width: 1800px) { @content; }}
 .home{
     display: flex;
     flex-wrap: wrap;
     padding-bottom: 4rem;
-    background-color: pink;
+    background-color: white;
     &__box{
         position: relative;
         
@@ -19,36 +29,84 @@ $children: 'http://127.0.0.1:8000/static/children.jpg/';
         flex-basis: 100%;
         height: 100%;
         position: relative;
-        
-        &__title{
-            bottom:30%;
+        &__box{
+            position: absolute;
+            bottom:35%;
             left:15%;
             width: 30%;
             height: 20%;
-            position: absolute;
-            padding-top: 40px;
+            
+            @include for-phone-only {    
+                bottom: 30%;
+                left:20%;
+                white-space: nowrap;
+             }
+            @include for-tablet-portrait-up{
+                width: 400px;
+                bottom:30%;
+            }
+            @include for-tablet-landscape-up{
+                bottom:30%;
+            }
+            
+        }
+        
+        &__title{
             flex-wrap: wrap;
             &__title{
                 color:white;
                 font-size: 2rem;
+                @include for-phone-only {    
+                    color:white;
+                    font-size:1.2rem;
+                    font-weight: 600;
+                 }
+            }
+            &__buttons{
+                @include for-phone-only {    
+                    width:400px;
+                 }
+                 @include for-tablet-portrait-up{
+                    width: 700px;
+                 }
+                button:hover{
+                    cursor:pointer;
+                    font-weight: 800;
+                }
+                button{
+                    padding: 1rem;
+                    margin-top: 0.5rem;
+                    font-weight: 600;
+                    @include for-phone-only {    
+                        width:200px;
+                        padding: 0.5rem;
+                        margin-top: 0.5rem;
+                        border: 1px solid black;
+                        box-shadow: 3px 3px 3px 3px white;
+                        margin-right: 1rem;
+                        background-color: white;
+                     }
+                 }
+                //  }
             }
             p{
                 padding-top: 1rem;
                 color: white;
                 font-size: 1rem;
             }
-            button{
-                padding: 1rem;
-                margin-top: 0.5rem;
-                min-width: 300px;
-                font-weight: 700;
-                font-size: 1rem;
-                width:50%;
-                border: 1px solid black;
-                box-shadow: 3px 3px 5px 6px white;
-                cursor: pointer;
+            &__secondtitle{
+                color:white;
+                @include for-phone-only {    
+                    color:white;
+                    white-space: pre-wrap;
+                    width: 400px;
+                 }
+                @include for-tablet-portrait-up{
+                    margin-top: 1rem;
+                }
             }
         }
+        
         &__img{
             padding-top: 40px;
             object-fit: contain;
@@ -61,18 +119,44 @@ $children: 'http://127.0.0.1:8000/static/children.jpg/';
     &__twocontainers{
         display: flex;
         flex-basis: 100%;
-    
+        @include for-phone-only {    
+            height: 500px;
+            flex-wrap: wrap;
+        }
         &__firstcontainer{
             display:flex;
             position: relative;
-            flex-basis: 40%;
-            
-            
+            width:40%;
+            @include for-phone-only {    
+                width:100%;
+                height: 50%;
+             }
+             button:hover{
+                cursor:pointer;
+                font-weight: 800;
+            }
+            button{
+                padding: 1rem;
+                margin-top: 0.5rem;
+                font-weight: 600;
+                @include for-phone-only {    
+                    width:200px;
+                    padding: 0.5rem;
+                    margin-top: 0.5rem;
+                    border: 1px solid black;
+                    box-shadow: 3px 3px 3px 3px white;
+                    margin-right: 1rem;
+                    background-color: white;
+                 }
+             }
             &__img{
                 object-fit: contain;
                 height: 100%;
                 width: 100%;
-                margin-right: 0.2rem;
+                padding-bottom:0.2rem;
+                @include for-phone-only {    
+                    object-fit: cover; 
+                 }
             }
             &__title{
                 position: absolute;
@@ -89,11 +173,57 @@ $children: 'http://127.0.0.1:8000/static/children.jpg/';
                     border: 1px solid black;
                     box-shadow: 3px 3px 5px 6px white;}
             }
+            &__box{
+                position: absolute;
+                bottom: 7%;
+                
+                color: white;
+                @include for-tablet-portrait-up{
+                    left:10%;
+                }
+                &__title{
+                    font-size: 1.2rem;
+                    font-weight: 700;
+                }
+                &__secondtitle{
+                    font-size: 1rem;
+                    font-weight: 500;
+                }
+                
+                button:hover{
+                    cursor:pointer;
+                    font-weight: 800;
+                }
+                button{
+                    padding: 1rem;
+                    margin-top: 0.5rem;
+                    font-weight: 600;
+                    color:black;
+                    @include for-phone-only {    
+                        width:250px;
+                        padding: 0.5rem;
+                        margin-top: 0.5rem;
+                        border: 1px solid black;
+                        box-shadow: 3px 3px 3px 3px white;
+                        margin-right: 1rem;
+                        background-color: white;
+                     }
+                 }
+                @include for-phone-only {    
+                    right:10%;
+                    height: 50%;
+                }
+            }
         }
         &__secondcontainer{
             display: flex;
             position: relative;
-            flex-basis: 60%;
+            width:60%;
+            padding-bottom:0.2rem;
+            @include for-phone-only {    
+                width:100%;
+                height: 50%;
+             }
             &__img{
                 // display: flex;
                 padding: 0;
@@ -101,10 +231,59 @@ $children: 'http://127.0.0.1:8000/static/children.jpg/';
                 width: 100%;
                 object-fit: cover;
                 
+                @include for-phone-only {    
+                    height:100%;
+                 }
+                
                 
                 img{
                     width: 100%;
                     height: 100%;
+                }
+                
+            }
+            &__box{
+                position: absolute;
+                right: 10%;
+                @include for-phone-only {    
+                    bottom:7%;
+                    left:10%;
+                    font-size: 1.2rem;
+                    font-weight: 500;
+                 }
+                 @include for-tablet-portrait-up{
+                    bottom:7%;
+                    font-size: 1.2rem;
+                    font-weight: 500;
+                 }
+                 button:hover{
+                    cursor:pointer;
+                    font-weight: 750;
+                }
+                button{
+                    padding: 1rem;
+                    margin-top: 0.5rem;
+                    font-weight: 600;
+                    color:black;
+                    white-space: nowrap;
+                    @include for-phone-only {    
+                        width:280px;
+                        padding: 0.5rem;
+                        margin-top: 0.5rem;
+                        border: 1px solid black;
+                        box-shadow: 3px 3px 3px 3px white;
+                        margin-right: 1rem;
+                        background-color: white;
+                     }
+                 }
+                &__title{
+                    
+                    color:white;
+                    width:200px;
+                    @include for-phone-only {    
+                        font-size: 1.2rem;
+                        font-weight: 500;
+                     }
                 }
                 
             }
@@ -163,59 +342,13 @@ $children: 'http://127.0.0.1:8000/static/children.jpg/';
         justify-content: center;
         padding-top: 2rem;
         margin-bottom: 2rem;
-        // &__first{
-        //     flex-basis: 20%;
-        //     object-fit: contain;
-        //     margin-right: 1rem;
-        //     &__img{
-        //         display: flex;
-                
-        //         height: 60%;
-        //         width: 100%;
-        //     }
-        //     &:hover{
-        //         cursor: pointer;
-        //         border: solid 2px black;}
-        // }
-        // &__second{
-        //     flex-basis: 20%;
-        //     object-fit: contain;
-        //     margin-right: 1rem;
-        //     &__img{
-                
-        //         height: 60%;
-        //         width: 100%;
-        //     }
-        //     &:hover{
-        //         cursor: pointer;
-        //         border: solid 2px black;}
-        // }
-        // &__third{
-        //     flex-basis: 20%;
-        //     object-fit: contain;
-        //     margin-right: 1rem;
-        //     &__img{
-                
-        //         height: 60%;
-        //         width: 100%;
-        //     }
-        //     &:hover{
-        //         cursor: pointer;
-        //         border: solid 2px black;}
-        // }
-        // &__fourth{
-        //     flex-basis: 20%;
-        //     object-fit: contain;
-        //     margin-right: 1rem;
-        //     &__img{
-                
-        //         height: 60%;
-        //         width: 100%;
-        //     }
-        //     &:hover{
-        //         cursor: pointer;
-        //         border: solid 2px black;}
-        // }
+        flex-wrap: wrap;
+        @include for-phone-only {    
+            justify-content: space-around;
+         }
+        @include for-tablet-portrait-up{
+            justify-content: space-around;
+        }
     }
     &__register{
         display: flex;
@@ -224,6 +357,19 @@ $children: 'http://127.0.0.1:8000/static/children.jpg/';
         align-items: center;
         justify-content: center;
         padding: 2rem;
+        @include for-phone-only {    
+            flex-direction: column;
+            text-align: center;
+            
+         }
+        &__button{
+            @include for-phone-only {    
+                margin-top: 1rem;
+             }
+        }
+        &__title{
+            text-align: center;
+        }
         button{
             padding: 1rem;
             margin-top: 0.5rem;
@@ -236,6 +382,13 @@ $children: 'http://127.0.0.1:8000/static/children.jpg/';
         span{
             padding: 2rem;
             color: white;
-            font-size: 2rem;}
+            font-size: 2rem;
+            
+            @include for-phone-only {    
+                padding-bottom: 1rem;
+                margin-bottom: 1rem;
+                
+             }
+        }
     }
 }

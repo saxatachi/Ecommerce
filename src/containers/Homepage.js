@@ -19,32 +19,40 @@ const Homepage = (props) => {
         const listItems = props.default.map((item,key) => <HomepageItem allitems={props.allitems.items} items={item} /> );
     return (
         <div className="home">
-            <div className="home__box">
+            
             <div className="home__container">
                 <img className="home__container__img" src="http://127.0.0.1:8000/static/person.jpg/"></img>
+            <div className="home__container__box">  
               <div className="home__container__title">
                   <div className="home__container__title__title">ZIG KINETICA: NOWE KOLORY</div>
-                  <p>Podkręć swój styl elektryzującymi zestawieniami kolorystycznymi. Poczuj przypływ mocy.</p>
-                  <button>Kupuj męskie</button>
-                  <button>Kupuj damskie</button>
+                  <div className="home__container__title__secondtitle">Podkręć swój styl elektryzującymi zestawieniami kolorystycznymi. Poczuj przypływ mocy.</div>
+                  <div className="home__container__title__buttons">
+                  <button className="home__container__title__buttons__men">Kupuj męskie</button>
+                  <button className="home__container__title__buttons__women">Kupuj damskie</button>
+                  </div>
               </div>
-            </div>
+              </div>  
+            
             </div>
             <div className="home__twocontainers">
             
               <div className="home__twocontainers__firstcontainer">
               <img className="home__twocontainers__firstcontainer__img" src="http://127.0.0.1:8000/static/fashion.jpg/"></img>
-                <div className="home__twocontainers__firstcontainer__title">  
-                    <h3>Posiadamy również rozmiary plus size.</h3>
-                    <h3>Zapraszamy zapoznaj się z naszą ofertą</h3>
-                    <button>Przejdz do naszych produktów</button>
+                <div className="home__twocontainers__firstcontainer__box">  
+                    <div className="home__twocontainers__firstcontainer__box__title">Posiadamy również rozmiary plus size.</div>
+                    <div className="home__twocontainers__firstcontainer__box__secondtitle">Zapraszamy zapoznaj się z naszą ofertą</div>
+                    <button className="home__twocontainers__firstcontainer__box__button">Przejdz do naszych produktów</button>
                     
                 </div>
               </div>
               <div className="home__twocontainers__secondcontainer">
                 <img className="home__twocontainers__secondcontainer__img" src="http://127.0.0.1:8000/static/shoes.jpg/"></img>
-                <div className="home__twocontainers__secondcontainer__title">  
-                    <h1> Posiadamy nową sportową kolekcje ubrań zarówno dla Pań jak i Panów</h1>
+                <div className="home__twocontainers__secondcontainer__box">
+                <div className="home__twocontainers__secondcontainer__box__title">  
+                    Posiadamy nową sportową kolekcje ubrań zarówno dla Pań jak i Panów
+                    </div>
+                    <button className="home__twocontainers__secondcontainer__box__button">Przejdz do kolekcji sportowej</button>
+                
                 </div>
               </div>
             </div>

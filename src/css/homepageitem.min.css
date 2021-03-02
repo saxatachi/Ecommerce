@@ -1,6 +1,17 @@
+.product {
+  margin-top: 1rem;
+}
+
 .product img {
   width: 300px;
   height: 300px;
+}
+
+@media (max-width: 599px) {
+  .product img {
+    width: 250px;
+    height: 250px;
+  }
 }
 
 .product-card {
@@ -25,5 +36,9 @@
 .product-card__details-main__title {
   font-size: 16px;
   font-weight: 600;
+}
+
+.product:hover {
+  border: 1px solid black;
 }
 /*# sourceMappingURL=homepageitem.min.css.map */

@@ -6,4 +6,8 @@ i {
   border-radius: 15px;
   color: orange !important;
 }
+
+.header.item {
+  white-space: nowrap;
+}
 /*# sourceMappingURL=menu.min.css.map */
