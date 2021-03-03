@@ -1,3 +1,14 @@
+@mixin for-phone-only {
+    @media (max-width: 599px) { @content; }}
+@mixin for-tablet-portrait-up {
+    @media (min-width: 600px) { @content; }}
+@mixin for-tablet-landscape-up {
+    @media (min-width: 900px) { @content; }}
+@mixin for-desktop-up {
+    @media (min-width: 1200px) { @content; }}
+@mixin for-big-desktop-up {
+    @media (min-width: 1800px) { @content; }}
+
 .review{
     display: flex;
     flex-direction: column;
@@ -22,14 +33,26 @@
     margin-bottom: 1rem;
     padding-bottom: 1rem;
     border-bottom: 0.2rem solid grey;
+    &__containermain{
+        display:flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: calc(100% - 100px)
+    }
     &__container{
         display: flex;
-        width: 60%;
+        width: 100%;
+        justify-content: center;
         &-title{
+            display:flex;
+            justify-content: center;
             min-width: 200px;
             padding-left: 2rem;
             font-size: 1.5rem;
             font-weight: 700;
+            @include for-phone-only{
+                min-width: 100px;
+            }
         }
     }
     &-image{
@@ -41,7 +64,7 @@
     &__button{
         display: flex;
         align-items: center;
-
+        justify-content: center;
         &-btn{
             display: inline-block;
             box-sizing: border-box;

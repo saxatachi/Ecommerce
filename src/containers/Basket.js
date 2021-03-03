@@ -29,27 +29,27 @@ const Basket = props => {
     const [fullitem,setfullitem]= useState();
     const [del,setdel]=useState(false)
     const history = useHistory();
-    useEffect(() => {
-        console.log(session)
-        const data = {
-            url: "https://ecommerce100.herokuapp.com/api/products/22/",
-            quantity: 1,
-        }
-        session.post('https://ecommerce100.herokuapp.com/add-product/',data)
-        .then(res =>{
-            console.log(res.data)
-        })
-        session.get('https://ecommerce100.herokuapp.com/api/basket/')
-            .then(
-                result =>{
-                    setTotal(result.data.total_incl_tax)
-                    session.get(result.data.lines)
-                    .then(res =>{
-                        setArray(res.data)
-                    })
-                }
-            )
-    }, []);
+    // useEffect(() => {
+    //     console.log(session)
+    //     const data = {
+    //         url: "https://ecommerce100.herokuapp.com/api/products/22/",
+    //         quantity: 1,
+    //     }
+    //     session.post('https://ecommerce100.herokuapp.com/add-product/',data)
+    //     .then(res =>{
+    //         console.log(res.data)
+    //     })
+    //     session.get('https://ecommerce100.herokuapp.com/api/basket/')
+    //         .then(
+    //             result =>{
+    //                 setTotal(result.data.total_incl_tax)
+    //                 session.get(result.data.lines)
+    //                 .then(res =>{
+    //                     setArray(res.data)
+    //                 })
+    //             }
+    //         )
+    // }, []);
     useEffect(()=>{
         session.get('http://127.0.0.1:8000/api/basket/')
             .then(

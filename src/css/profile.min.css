@@ -8,6 +8,7 @@
 }
 
 .profile {
+  width: 100%;
   display: -ms-grid;
   display: grid;
   margin-bottom: 2rem;
@@ -15,6 +16,18 @@
       grid-template-columns: 1fr 3fr;
   -ms-grid-rows: 100px 1fr;
       grid-template-rows: 100px 1fr;
+}
+
+@media (max-width: 599px) {
+  .profile {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
 }
 
 .profile__suggestions {

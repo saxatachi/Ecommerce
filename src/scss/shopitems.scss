@@ -5,6 +5,7 @@ $breakpoints: (
     desktops: (min-width: 1025px),
     extra-large: (min-width: 1201px)
     );
+
 @mixin mq($breakpoint){
     $size: map-get($breakpoints,$breakpoint);
     @if($size){
@@ -20,11 +21,11 @@ $breakpoints: (
 
 .shop__items{
     display: flex;
-    // justify-content: center;
-    flex-basis: 90%;
+    width: 100%;
     flex-wrap: wrap;
     height: 100%;
     margin-top:2rem;
+    justify-content: center;
     
     
     
@@ -45,6 +46,8 @@ $breakpoints: (
         margin-bottom: 2rem;
         flex-direction: column;
         flex-basis: 23%;
+        min-width:350px;
+        width:350px;
         border: 1px solid grey;
         list-style-type: none;
         &__circle{

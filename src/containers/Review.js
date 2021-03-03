@@ -72,16 +72,6 @@ const ReviewItems = (props) => {
                 if(x !== undefined){
                     setadded(true)
                 }
-                
-                // for(let i=0;res.data.reviews.length;i++){
-                //     console.log(res.data.reviews[i])
-                //     // if(res.data.reviews[i].user == "http://127.0.0.1:8000/api/users/4/"){
-                //     //     console.log("jest")
-                //     //     setadded(true)
-                        
-                //     // }
-                // }
-
             }
             setitem(res.data)
             setimage(res.data.images[0].original)
@@ -92,6 +82,7 @@ const ReviewItems = (props) => {
         <div className="review__items__item">
 
             <img className="review__items__item-image"src={image} />
+            <div className="review__items__item__containermain">
             <div className="review__items__item__container">
                 <div className="review__items__item__container-title">
                     {item.title}
@@ -99,6 +90,7 @@ const ReviewItems = (props) => {
             </div>
             <div className="review__items__item__button">
                 {added ? <button className="review__items__item__button-btn1">Recenzja została przez ciebie dodana</button>: <button onClick={()=>handleClick(item)} className="review__items__item__button-btn">Napisz recenzję</button>}
+            </div>
             </div>
         </div>
     );

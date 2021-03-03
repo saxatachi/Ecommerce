@@ -201,7 +201,7 @@ const Item1 = (props) => {
                         
                     </div>
                     <div className="itemcontainer__orderinformation__price">
-                        {object !== undefined && object.price.incl_tax} zł
+                        Cena : {object !== undefined && object.price.incl_tax} zł
                         
                     </div>
                     <div className="itemcontainer__orderinformation__default">
@@ -239,9 +239,7 @@ const Item1 = (props) => {
                             </div>
                         </div>
                         <div className="itemcontainer__orderinformation__buttons__quantity">
-                            {/* <button ref={this.quantityRef} onClick={this.handleDropdownQuantity}><span>Ilość</span></button> */}
                             <button ref={refquantity} onClick={handleDropdownQuantity}><span>Ilość</span></button>
-                            {/* <div className="itemcontainer__orderinformation__buttons__size__dropdown" style={{display: this.state.secondDropdown ? 'block' : 'none' }}> */}
                             <div className="itemcontainer__orderinformation__buttons__size__dropdown" style={{display: secondDropdown ? 'block' : 'none' }}>
                             <div className="itemcontainer__orderinformation__buttons__quantity__list" >
                                 <ul className="quantitylist">
@@ -280,11 +278,6 @@ const Item1 = (props) => {
                     
                     </div>
                     {comments}
-                    {/* <div className="itemcontainer__comments-comms">
-                        <div className="itemcontainer__comments-comms__image">
-                            <img src="http://127.0.0.1:8000/static/default.jpg/"/>
-                        </div>
-                    </div> */}
                 </div> 
             </div>
             </>

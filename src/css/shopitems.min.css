@@ -3,12 +3,14 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-preferred-size: 90%;
-      flex-basis: 90%;
+  width: 100%;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   height: 100%;
   margin-top: 2rem;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .shop__items__title {
@@ -41,6 +43,8 @@
           flex-direction: column;
   -ms-flex-preferred-size: 23%;
       flex-basis: 23%;
+  min-width: 350px;
+  width: 350px;
   border: 1px solid grey;
   list-style-type: none;
 }

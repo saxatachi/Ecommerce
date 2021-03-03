@@ -370,9 +370,12 @@ span#total{
 }
 th.quantity{
     text-align: center;
+    min-width: 80px;
+
 }
 th.price{
     text-align: center;
+    min-width: 130px;
 }
 th.summary{
     text-align: center;
