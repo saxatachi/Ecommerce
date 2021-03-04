@@ -12,6 +12,14 @@
   position: relative;
 }
 
+@media (min-width: 600px) {
+  .itemcontainer {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
 .itemcontainer__delivery {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -259,6 +267,12 @@
 @media (min-width: 600px) {
   .itemcontainer__orderinformation {
     width: 100%;
+  }
+}
+
+@media (min-width: 900px) {
+  .itemcontainer__orderinformation {
+    width: 30%;
   }
 }
 

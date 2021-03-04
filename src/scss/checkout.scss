@@ -1,4 +1,13 @@
-
+@mixin for-phone-only {
+    @media (max-width: 599px) { @content; }}
+@mixin for-tablet-portrait-up {
+    @media (min-width: 600px) { @content; }}
+@mixin for-tablet-landscape-up {
+    @media (min-width: 900px) { @content; }}
+@mixin for-desktop-up {
+    @media (min-width: 1200px) { @content; }}
+@mixin for-big-desktop-up {
+    @media (min-width: 1800px) { @content; }}
 .checkout{
     display: flex;
     width: 100%;
@@ -6,16 +15,32 @@
     height: 100%;
     flex-grow: 1;
     padding-bottom: 10px;
-    // background-color: #e9fbff;
     background-color: white;
+    @include for-phone-only{
+        flex-wrap: wrap;
+        
+    }
+    @include for-tablet-portrait-up{
+        flex-wrap: wrap;
+        
+    }
+    @include for-tablet-landscape-up{
+        flex-wrap: nowrap;
+    }
     &__order{
         display: flex;
         color: black;
         background-color: white;
         flex-wrap: wrap;
         height: 100%;
-        width: 350px;
+        // width: 350px;
         padding-right: 2rem;
+        @include for-phone-only{
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            padding-right: 0rem;
+        }
         &__summary{
             display: flex;
             width: 100%;
@@ -23,17 +48,14 @@
             height: 300px;
             &__discounts{
                 padding-left: 2rem;
-                // height: 50px;
                 height: 30%;
                 display: flex;
                 width: 100%;
                 font-size: 1.7rem;
                 font-weight: 700;
-                // margin-top: 3rem;
                 justify-content: center;
                 align-items: center;
                 border-bottom: 2px solid grey;
-                
                 &-price{
                     display: flex;
                     color: red;
@@ -190,6 +212,9 @@
         flex-basis: 100%;
         justify-content: center;
         padding-top: 40px;
+        @include for-phone-only{
+            justify-content: center;
+        }
     }
     &__address{
         display: flex;
@@ -255,13 +280,17 @@
     &__account{
         padding-top: 40px;
         display: flex;
-        flex-basis: 80%;
+        // flex-basis: 80%;
         flex-wrap: wrap;
         padding-right: 2rem;
         padding-left: 2rem;
         background-color: white;
         height: 100%;
         padding-bottom: 2rem;
+        @include for-phone-only{
+            justify-content: center;
+            width:100%;
+        }
         // border-right: 0.7rem solid grey;
         &__backbutton{
             display: flex;
@@ -298,7 +327,7 @@
     }
     &__order{
         display: flex;
-        flex-basis: 20%;
+        
         // height: 70vh;
     }
     

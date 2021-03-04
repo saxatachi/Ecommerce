@@ -1,3 +1,13 @@
+@mixin for-phone-only {
+    @media (max-width: 599px) { @content; }}
+@mixin for-tablet-portrait-up {
+    @media (min-width: 600px) { @content; }}
+@mixin for-tablet-landscape-up {
+    @media (min-width: 900px) { @content; }}
+@mixin for-desktop-up {
+    @media (min-width: 1200px) { @content; }}
+@mixin for-big-desktop-up {
+    @media (min-width: 1800px) { @content; }}
 .addaddress{
     display: flex;
     margin-top: 2rem;
@@ -8,10 +18,27 @@
     }
     &__firstcolumn{
         width: 50%;
+        display: flex;
+        flex-direction: column;
         min-width: 400px;
+        @include for-phone-only{
+            align-items: center;
+        }
+        @include for-tablet-portrait-up{
+            align-items: center;
+        }
     }
     &__secondcolumn{
         width: 50%;
+        display: flex;
+        flex-direction: column;
+        min-width: 400px;
+        @include for-phone-only{
+            align-items: center;
+        }
+        @include for-tablet-portrait-up{
+            align-items: center;
+        }
     }
     width: 100%;
     input{

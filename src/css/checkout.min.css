@@ -12,6 +12,27 @@
   background-color: white;
 }
 
+@media (max-width: 599px) {
+  .checkout {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+}
+
+@media (min-width: 600px) {
+  .checkout {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+}
+
+@media (min-width: 900px) {
+  .checkout {
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+  }
+}
+
 .checkout__order {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -21,8 +42,20 @@
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   height: 100%;
-  width: 350px;
   padding-right: 2rem;
+}
+
+@media (max-width: 599px) {
+  .checkout__order {
+    width: 100%;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding-right: 0rem;
+  }
 }
 
 .checkout__order__summary {
@@ -292,6 +325,14 @@
   padding-top: 40px;
 }
 
+@media (max-width: 599px) {
+  .checkout__add {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
 .checkout__address {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -365,8 +406,6 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-preferred-size: 80%;
-      flex-basis: 80%;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   padding-right: 2rem;
@@ -374,6 +413,15 @@
   background-color: white;
   height: 100%;
   padding-bottom: 2rem;
+}
+
+@media (max-width: 599px) {
+  .checkout__account {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: 100%;
+  }
 }
 
 .checkout__account__backbutton {
@@ -433,8 +481,6 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-preferred-size: 20%;
-      flex-basis: 20%;
 }
 
 ._53Ji7 {
